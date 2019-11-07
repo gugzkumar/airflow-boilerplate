@@ -1,17 +1,21 @@
 version: '2.1'
 services:
-    postgres:
+    airflow-db:
         image: postgres:9.6
         environment:
             - POSTGRES_USER=$POSTGRES_USER
             - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
             - POSTGRES_DB=$POSTGRES_DB
+        volumes:
+          - airflow-volume:/var/lib/postgresql/data
+        ports:
+          - "5432:5432"
 
-    webserver:
-        image: puckel/docker-airflow:1.10.4
+    airflow-webserver:
+        build: ./airflow
         restart: always
         depends_on:
-            - postgres
+            - airflow-db
         environment:
             - LOAD_EX=n
             - EXECUTOR=Local
@@ -26,3 +30,6 @@ services:
             interval: 30s
             timeout: 30s
             retries: 3
+
+volumes:
+  airflow-volume:
