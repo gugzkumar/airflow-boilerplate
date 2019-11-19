@@ -22,7 +22,7 @@ default_args = {
 dag = DAG(
     'Example_1',
     default_args=default_args,
-    schedule_interval='None',
+    schedule_interval=None,
     # schedule_interval='* * * * *', # Uncomment to run every minute
     catchup=False
 )
