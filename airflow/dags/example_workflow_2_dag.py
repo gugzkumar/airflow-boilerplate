@@ -31,6 +31,7 @@ dag = DAG(
     'Example_2',
     default_args=default_args,
     schedule_interval=None,
+    # schedule_interval='* * * * *', # Uncomment to run every minute
     catchup=False
 )
 dag.doc_md = __doc__
