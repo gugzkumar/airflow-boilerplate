@@ -8,6 +8,7 @@ To test the failiure operator set the `bash_command` in the start_task to:<br>
 <br><br>
 To test the failiure operator set the `bash_command` in the start_task to:<br>
 `sleep 5 && echo "Hello World" && exit 1`
+<br><br>
 """
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
