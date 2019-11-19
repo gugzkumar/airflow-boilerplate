@@ -21,7 +21,6 @@ from airflow.models import Variable
 # Get and Set Configurations
 NUM_USERS = Variable.get("NUM_USERS", default_var=5)
 SLACK_OAUTH_TOKEN = os.environ['SLACK_OAUTH_TOKEN']
-DAG_ID = 'Example_2'
 
 # Set up a DAG
 default_args = {
@@ -29,7 +28,7 @@ default_args = {
     'trigger_rule': 'all_success'
 }
 dag = DAG(
-    DAG_ID,
+    'Example_2',
     default_args=default_args,
     schedule_interval=None,
     catchup=False
