@@ -25,10 +25,18 @@ services:
             - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
             - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
             - SLACK_OAUTH_TOKEN=${SLACK_OAUTH_TOKEN}
+            - AIRFLOW__CORE__DAG_CONCURRENCY=50
+            - AIRFLOW__CORE__PARALLELISM=50
+            - AIRFLOW__WEBSERVER__DAG_DEFAULT_VIEW=graph
+            # - AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL=20
+            - AIRFLOW__OPERATORS__DEFAULT_RAM=10
+            - AIRFLOW__OPERATORS__DEFAULT_DISK=10
         volumes:
             - ./airflow/dags:/usr/local/airflow/dags
             - ./airflow/plugins:/usr/local/airflow/plugins
             - ./airflow/utils:/usr/local/airflow/utils
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./.kubernetes/config:/usr/local/airflow/.kube/config
         ports:
             - "8080:8080"
         command: webserver

@@ -32,7 +32,7 @@ dag.doc_md = __doc__
 # Set up a Bash Task that Prints and exits
 start_task = BashOperator(
     task_id='Start',
-    bash_command='sleep 5 && echo "Hello World" && exit 1',
+    bash_command='sleep 5 && echo "Hello World" && exit 0',
     dag=dag,
 )
 
