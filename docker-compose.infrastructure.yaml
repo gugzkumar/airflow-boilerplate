@@ -1,0 +1,20 @@
+# Use the AWS cdk to help you set up the environment for Example Dag 4
+version: '3.7'
+services:
+    # --------------------------------------------------------------------------
+    # AWS-INFRASTRUCTURE DEPLOYMENT AND MAINTAINENCE WRITTEN IN aws-cdk
+    # --------------------------------------------------------------------------
+    aws-cdk:
+        build: ./.aws-infrastructure
+        container_name: aws-cdk
+        env_file:
+            .env
+        command: tail -F anything
+        volumes:
+            - ./.aws-infrastructure/package.json:/usr/src/.aws-infrastructure/package.json
+            - ./.aws-infrastructure:/usr/src/app/
+            - /usr/src/app/node_modules
+
+networks:
+  default:
+    name: cheet-sheet-deploy-infrastructure

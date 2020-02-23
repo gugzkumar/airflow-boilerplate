@@ -1,5 +1,7 @@
 # Project files
 .kubernetes/config
+datafiles
+.DS_Store
 
 # Node files
 node_modules
@@ -22,6 +24,7 @@ downloads/
 eggs/
 .eggs/
 lib/
+!.aws-infrastructure/lib/
 lib64/
 parts/
 sdist/
