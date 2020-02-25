@@ -26,7 +26,7 @@ default_args = {
     'trigger_rule': 'all_success'
 }
 dag = DAG(
-    'Example_5',
+    'Example_3',
     default_args=default_args,
     schedule_interval=None,
     catchup=False

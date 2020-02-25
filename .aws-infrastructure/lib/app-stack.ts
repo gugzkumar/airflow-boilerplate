@@ -24,7 +24,7 @@ export class AppStack extends cdk.Stack {
 
     // Create Role that allows bucket manipulation
     const role = new iam.Role(this, 'AirflowBoilerplateJobRole', {
-        assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com')
+        assumedBy: new iam.ServicePrincipal('ecs-tasks.amazonaws.com')
     });
     role.addToPolicy(new iam.PolicyStatement({
         resources: [workflowBucket.bucketArn],
@@ -36,8 +36,23 @@ export class AppStack extends cdk.Stack {
             's3:ListBucket'
         ]
     }));
+    role.addToPolicy(new iam.PolicyStatement({
+        resources: ['*'],
+        actions: [
+            "ecr:GetAuthorizationToken",
+            "ecr:BatchCheckLayerAvailability",
+            "ecr:GetDownloadUrlForLayer",
+            "ecr:BatchGetImage",
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"
+        ]
+    }));
 
     // Task definition to run a job
+    const logging = new ecs.AwsLogDriver({
+        streamPrefix: "airflow-boilerplate",
+    })
+
     const fargateTaskDef = new ecs.FargateTaskDefinition(this,  'AirflowBoilerplateJobDefinition', {
         cpu: 256,
         memoryLimitMiB: 512,
@@ -45,7 +60,8 @@ export class AppStack extends cdk.Stack {
     });
     fargateTaskDef.addContainer('AirflowBoilerplateJob', {
         image: ecs.ContainerImage.fromEcrRepository(imageRepository, 'latest'),
-        command: ['echo', '"Hello World"']
+        command: ['echo', '"Hello World"'],
+        logging: logging
     });
 
 
