@@ -26,6 +26,7 @@ services:
             - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
             - SLACK_OAUTH_TOKEN=${SLACK_OAUTH_TOKEN}
             - TASK_DEF=${TASK_DEF}
+            - TASK_SUBNET=${TASK_SUBNET}
             - FARGATE_CLUSTER=${FARGATE_CLUSTER}
             - S3_BUCKET=${S3_BUCKET}
             - AIRFLOW__CORE__DAG_CONCURRENCY=50
