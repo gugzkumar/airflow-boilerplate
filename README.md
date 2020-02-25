@@ -17,3 +17,6 @@ SLACK_OAUTH_TOKEN=
 - AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL=
 - AIRFLOW__OPERATORS__DEFAULT_RAM=
 - AIRFLOW__OPERATORS__DEFAULT_DISK=
+
+
+## https://www.talend.com/blog/2019/08/01/etl-jobs-on-serverless-platforms-using-apache-airflow/
