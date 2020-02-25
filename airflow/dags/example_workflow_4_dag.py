@@ -1,6 +1,17 @@
 """
 # Example DAG 4
 
+This Dag demonstrates how one can leverage Ariflow and AWS Fargate to perform large cost effective ETL operations. `.aws-infrastructure` is used to build the required AWS resources.
+
+
+First we use `fargatejob/crunch_stats.py` to do partial computations,
+and then summarize them with `fargatejob/summarize_interesting_stats.py`.
+We have slack jobs to act as _notifications when tasks fail or succeed.
+
+Example of how this would look in production:<br>
+<img src="https://www.talend.com/wp-content/uploads/Picture6.png" width="600" />
+<br>
+^ [https://www.talend.com/blog/2019/08/01/etl-jobs-on-serverless-platforms-using-apache-airflow/](https://www.talend.com/blog/2019/08/01/etl-jobs-on-serverless-platforms-using-apache-airflow/)
 """
 import os
 from airflow import DAG
