@@ -46,10 +46,11 @@ AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 # this is just a list of tuples of the cli arguments that
 # go into fargatejob/crunch_stats.py
 crunch_job_configs = [
-    (0, 100),
-    (101, 200),
-    (201, 300),
-    (301, 400)
+    (0, 1000),
+    (1001, 2000),
+    (2001, 3000),
+    (3001, 4000),
+    (4001, 4222)
 ]
 
 crunch_job_tasks = []
